@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <%- include('header.html'); -%>
+  <body>
+    <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
+    <div class="cont">
+      <div class="mob-header">
+        <img src="images/mob-logo.png" height="17" width="136"/>
+      </div>
+      <div class="form sign-in" id="signin-div">
+        <p class="title" style="margin-bottom: 30px;">旅行予約サービスへようこそ。</p>
+        <p class="desc">このサービスには、ホテルの予約とフライトの予約が含まれます。<br/>まずは、ログインしてください。</p>
+
+        <form action="/login" method="post">
+          <!-- user input-->
+          ユーザー名<br>
+          <input type="text" name="username" placeholder="Username" required><br><br>
+          パスワード<br>
+          <input type="password" name="password" placeholder="Password" required><br><br>
+          <!-- submit button -->
+          <div class="center"><button type="submit" class="submit" id="submit-btn"  data-res="signin-submit-btn">Login</button></div>
+        </form>
+      </div>
+
+    </div>
+
+
+
+  </body>
+
+</html>

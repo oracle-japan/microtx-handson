@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <%- include('header.html'); -%>
+
+  <body>
+    <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
+    
+    <div class="cont2">
+      <div class="mob-header">
+        <img src="images/mob-logo.png" height="17" width="136"/>
+      </div>
+      <div class="listpage">
+
+        <% if(recordsArr.length == 0) { %>
+          <p class="desc noresult">予約データがありません。</p>
+        <% } else { %>
+          <p class="title">予約一覧</p>
+          <table class="listtable">
+            <tr>
+              <th rowspan="2" style="width: 35%;">ID</th>
+              <th rowspan="2">状態</th>
+              <th colspan="3">詳細情報</th>
+            
+            </tr>
+            <tr>
+              <th>種類</th>
+              <th>名前</th>
+              <th>状態</th>
+            </tr>
+            <% recordsArr.forEach(item => { %>
+            <tr>
+              <td rowspan="2"><%= item.id %></td>
+              <td rowspan="2"><%= item.status %></td>
+              <% for(var i = 0; i < 1; i++){ %>
+              <td><%= item.details[i].type %></td>
+              <td><%= item.details[i].name %></td>
+              <td><%= item.details[i].status %></td>
+
+              <% } %>
+            </tr>
+
+            <% if(item.details.length == 1) { %>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <% } %>
+
+            <% if(item.details.length == 2) { %>
+            <tr>
+              <td><%= item.details[1].type %></td>
+              <td><%= item.details[1].name %></td>
+              <td><%= item.details[1].status %></td>
+            </tr>
+            <% } %>
+
+
+            <% }); %>
+          </table>            
+          <% } %>
+        <div class="menu"><span><a href="/">新たに予約</a></span><span><a href="/signout">ログアウト</a></span></div>
+
+      </div>
+      
+
+    </div>
+
+
+
+  </body>
+
+</html>

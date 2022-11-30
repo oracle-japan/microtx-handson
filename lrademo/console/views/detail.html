@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <%- include('header.html'); -%>
+
+  <body>
+    <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
+    
+    <div class="cont">
+      <div class="mob-header">
+        <img src="images/mob-logo.png" height="17" width="136"/>
+      </div>
+      <div class="form sign-in" id="signin-div">
+          <p class="title">予約状態： 
+          <% if (status == "PROVISIONAL") {%>
+           <span>仮予約</span>
+          <% } %>
+
+          <% if (status == "CONFIRMED") {%>
+            <span>予約完了</span>
+          <% } %>
+
+          <% if (status == "CANCELLED") {%>
+            <span>予約キャンセル</span>
+          <% } %>
+          </p>
+          <p class="title">予約詳細情報</p>
+          <ul class="detailData"><li>種類</li> <li>名前</li> <li>状態</li></ul>
+        <% detailsInfo.forEach(item => { %>
+          <ul class="detailData"><li><%= item.type %></li> <li><%= item.name %></li> <li><%= item.status %></li></ul>
+        <% }); %>
+        
+
+        <% if (status == "PROVISIONAL") {%>
+          <form method="post">
+            <!-- submit button -->
+            <input type="hidden" name="bookingId" value="<%= bookingId %>"/>
+            <div class="center"><button type="submit" class="submit" id="submit-btn" formaction="/confirmtrip" data-res="signin-submit-btn">予約を確認</button></div>
+            <div class="center"><button type="submit" class="submit" id="cancel-btn"  formaction="/canceltrip" data-res="signin-submit-btn">予約をキャンセル</button></div>
+          </form>
+        <% } %>
+        <br>
+        
+        <% if (status == "CONFIRMED" || status == "CANCELLED") {%>
+        <div class="menu"><span><a href="/">新たに予約</a></span><span><a href="/gettrips">予約一覧</a></span><span><a href="/signout">ログアウト</a></span></div>
+        <% } %>
+      </div>
+      
+
+    </div>
+
+
+
+  </body>
+
+</html>
