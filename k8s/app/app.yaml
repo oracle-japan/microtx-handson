@@ -149,8 +149,6 @@ spec:
               value: flight
             - name: ORACLE_TMM_CALLBACK_URL
               value: http://flight:8080
-            - name: TNS_ADMIN
-              value: /db-demo/creds
             - name: DBUSER
               valueFrom:
                 secretKeyRef:
@@ -165,7 +163,7 @@ spec:
               value: microtxhandson2_high
           volumeMounts:
           - name: handson
-            mountPath: /db-demo/creds
+            mountPath: /usr/src/app/instantclient_21_8/network/admin
       volumes:
       - name: handson
         secret:
