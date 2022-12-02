@@ -51,6 +51,6 @@ app.use(cookieParser("secretkeyffdd"));
 
 
 
-app.use('/', indexRouter);
+app.use('/demo-console', indexRouter);
 
 module.exports = app;

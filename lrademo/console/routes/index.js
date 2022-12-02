@@ -51,7 +51,7 @@ router.get('/signout', (req, res) => {
         }
          
         res.clearCookie("otmm-console");
-        res.redirect('/');
+        res.redirect('/demo-console');
     });
 });
 

@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: otmm-sampleappslra
+  namespace: otmm
+spec:
+  gateways:
+  - otmm-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /flightService
+    rewrite:
+      uri: /flightService
+    route:
+    - destination:
+        host: flight
+        subset: v1
+  - match:
+    - uri:
+        prefix: /hotelService
+    rewrite:
+      uri: /hotelService
+    route:
+    - destination:
+        host: hotel
+        subset: v1
+  - match:
+    - uri:
+        prefix: /trip-service
+    rewrite:
+      uri: /trip-service
+    route:
+    - destination:
+        host: trip-manager
+        subset: v1
+  - match:
+    - uri:
+        prefix: /demo-console
+    rewrite:
+      uri: /demo-console
+    route:
+    - destination:
+        host: console
+        subset: v1

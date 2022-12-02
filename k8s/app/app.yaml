@@ -1,0 +1,321 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotel
+  namespace: otmm
+  labels:
+    app: hotel
+    service: hotel
+spec:
+  ports:
+    - port: 8080
+      name: http
+      targetPort: 8082
+  selector:
+    app: hotel
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hotel
+  namespace: otmm
+  labels:
+    account: hotel
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel
+  namespace: otmm
+  labels:
+    app: hotel
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotel
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: hotel
+        version: v1
+    spec:
+      containers:
+        - name: hotel
+          image: icn.ocir.io/orasejapan/hotel
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "250m"
+          env:
+            - name: ORACLE_TMM_TCS_URL
+              value: http://otmm-tcs:9000/api/v1
+            - name: MP_LRA_COORDINATOR_URL
+              value: http://otmm-tcs:9000/api/v1/lra-coordinator
+            - name: MP_LRA_PARTICIPANT_URL
+              value: http://hotel:8080
+            - name: SERVICE_NAME
+              value: hotel
+            - name: javax.sql.DataSource.test.dataSource.user
+              valueFrom:
+                secretKeyRef:
+                  name: customized-db-cred
+                  key: user_name
+            - name: javax.sql.DataSource.test.dataSource.password
+              valueFrom:
+                secretKeyRef:
+                  name: customized-db-cred
+                  key: password
+            - name: javax.sql.DataSource.test.dataSource.url
+              value: jdbc:oracle:thin:@microtxhandson1_high?TNS_ADMIN=/db-demo/creds
+          volumeMounts:
+          - name: handson
+            mountPath: /db-demo/creds
+      volumes:
+      - name: handson
+        secret:
+          secretName: okeatp1
+      imagePullSecrets:
+        - name: regcred
+---
+##################################################################################################
+# Flight
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: flight
+  namespace: otmm
+  labels:
+    app: flight
+    service: flight
+spec:
+  ports:
+    - port: 8080
+      name: http
+      targetPort: 8083
+  selector:
+    app: flight
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: flight
+  namespace: otmm
+  labels:
+    account: flight
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flight
+  namespace: otmm
+  labels:
+    app: flight
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flight
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: flight
+        version: v1
+    spec:
+      containers:
+        - name: flight
+          image: icn.ocir.io/orasejapan/flight
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8083
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "250m"
+          env:
+            - name: ORACLE_TMM_TCS_URL
+              value: http://otmm-tcs:9000/api/v1
+            - name: SERVICE_NAME
+              value: flight
+            - name: ORACLE_TMM_CALLBACK_URL
+              value: http://flight:8080
+            - name: TNS_ADMIN
+              value: /db-demo/creds
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: customized-db-cred
+                  key: user_name
+            - name: DBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: customized-db-cred
+                  key: password
+            - name: CONNECT_STRING
+              value: microtxhandson2_high
+          volumeMounts:
+          - name: handson
+            mountPath: /db-demo/creds
+      volumes:
+      - name: handson
+        secret:
+          secretName: okeatp2              
+      imagePullSecrets:
+        - name: regcred
+---
+##################################################################################################
+# Trip Manager
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: trip-manager
+  namespace: otmm
+  labels:
+    app: trip-manager
+    service: trip-manager
+spec:
+  ports:
+    - port: 8080
+      name: http
+      targetPort: 8081
+  selector:
+    app: trip-manager
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: trip-manager
+  namespace: otmm
+  labels:
+    account: trip-manager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trip-manager
+  namespace: otmm
+  labels:
+    app: trip-manager
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trip-manager
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: trip-manager
+        version: v1
+    spec:
+      containers:
+        - name: trip-manager
+          image: icn.ocir.io/orasejapan/trip-manager
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "250m"
+          env:
+            - name: ORACLE_TMM_TCS_URL
+              value: http://otmm-tcs:9000/api/v1
+            - name: MP_LRA_COORDINATOR_URL
+              value: http://otmm-tcs:9000/api/v1/lra-coordinator
+            - name: MP_LRA_PARTICIPANT_URL
+              value: http://trip-manager:8080
+            - name: SERVICE_NAME
+              value: trip-manager
+            - name: HOTEL_SERVICE_URL
+              value: http://hotel:8080/hotelService/api/hotel
+            - name: FLIGHT_SERVICE_URL
+              value: http://flight:8080/flightService/api/flight
+      imagePullSecrets:
+        - name: regcred
+---
+##################################################################################################
+# Console
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: console
+  namespace: otmm
+  labels:
+    app: console
+    service: console
+spec:
+  ports:
+    - port: 8080
+      name: http
+      targetPort: 8084
+  selector:
+    app: console
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: console
+  namespace: otmm
+  labels:
+    account: console
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: console
+  namespace: otmm
+  labels:
+    app: console
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: console
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: console
+        version: v1
+    spec:
+      containers:
+        - name: console
+          image: icn.ocir.io/orasejapan/console
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8084
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "250m"
+          env:
+            - name: IDCS_URL
+              value: https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
+            - name: IDCS_CLIENT_ID
+              value: 6a7840b6a440462d84407261783327b7
+            - name: IDCS_CLIENT_SECRET
+              value: 09c12f31-5e67-4230-8ee1-ba2314dcc8e1
+            - name: SERVICE_NAME
+              value: console
+            - name: TRIP_SERVICE_URL
+              value: http://trip-manager:8080/trip-service/api/trip
+      imagePullSecrets:
+        - name: regcred
+---

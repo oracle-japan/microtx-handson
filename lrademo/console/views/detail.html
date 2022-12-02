@@ -11,7 +11,7 @@
     
     <div class="cont">
       <div class="mob-header">
-        <img src="images/mob-logo.png" height="17" width="136"/>
+        <img src="/images/mob-logo.png" height="17" width="136"/>
       </div>
       <div class="form sign-in" id="signin-div">
           <p class="title">予約状態： 
@@ -38,14 +38,14 @@
           <form method="post">
             <!-- submit button -->
             <input type="hidden" name="bookingId" value="<%= bookingId %>"/>
-            <div class="center"><button type="submit" class="submit" id="submit-btn" formaction="/confirmtrip" data-res="signin-submit-btn">予約を確認</button></div>
-            <div class="center"><button type="submit" class="submit" id="cancel-btn"  formaction="/canceltrip" data-res="signin-submit-btn">予約をキャンセル</button></div>
+            <div class="center"><button type="submit" class="submit" id="submit-btn" formaction="/demo-console/confirmtrip" data-res="signin-submit-btn">予約を確認</button></div>
+            <div class="center"><button type="submit" class="submit" id="cancel-btn"  formaction="/demo-console/canceltrip" data-res="signin-submit-btn">予約をキャンセル</button></div>
           </form>
         <% } %>
         <br>
         
         <% if (status == "CONFIRMED" || status == "CANCELLED") {%>
-        <div class="menu"><span><a href="/">新たに予約</a></span><span><a href="/gettrips">予約一覧</a></span><span><a href="/signout">ログアウト</a></span></div>
+        <div class="menu"><span><a href="/demo-console">新たに予約</a></span><span><a href="/demo-console/gettrips">予約一覧</a></span><span><a href="/demo-console/signout">ログアウト</a></span></div>
         <% } %>
       </div>
       
