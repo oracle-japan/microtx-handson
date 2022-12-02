@@ -24,9 +24,9 @@ import oracledb from 'oracledb';
 import { dbConfig }  from '../dbconfig';
 
 
-let usr = process.env.dbuser || dbConfig.dbuser || 'admin';
-let pwd = process.env.dbpassword || dbConfig.dbpassword || '';
-let ins = process.env.connect_string || dbConfig.connect_string || 'localhost/xepdb1';
+let usr = process.env.DBUSER || dbConfig.dbuser || 'admin';
+let pwd = process.env.DBPASSWORD || dbConfig.dbpassword || '';
+let ins = process.env.CONNECT_STRING || dbConfig.connect_string || 'localhost/xepdb1';
 
 let dbConfiged = {
     user: usr,
@@ -82,7 +82,7 @@ export async function initdb() {
 
     try {
 
-        console.log(dbConfig);
+        console.log(dbConfiged);
         // console.log(oracledb);
 
         connection = await oracledb.getConnection(dbConfiged);
