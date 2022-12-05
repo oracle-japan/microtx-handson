@@ -45,6 +45,15 @@ spec:
     - destination:
         host: console
         subset: v1
+  - match:
+    - uri:
+        exact: /
+    - uri:
+        regex: '^.*\.(ico|png|jpg|js|woff|svg|woff2|eot|ttf|css)$'
+    route:
+    - destination:
+        host: console
+        subset: v1
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
