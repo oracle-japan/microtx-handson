@@ -30,7 +30,7 @@
           <p class="title">予約詳細情報</p>
           <ul class="detailData"><li>種類</li> <li>名前</li> <li>状態</li></ul>
         <% detailsInfo.forEach(item => { %>
-          <ul class="detailData"><li><%= item.type %></li> <li><%= item.name %></li> <li><%= item.status %></li></ul>
+          <ul class="detailData"><li><%= item.type %></li> <li><%= item.name %></li> <li><%- item.status == 'PROVISIONAL' ? '仮予約' : item.status == 'CONFIRMED' ? '予約完了' : item.status == 'CANCELLED' ? '予約キャンセル' : item.status == 'FAILED' ? '予約失敗' : item.status %></li></ul>
         <% }); %>
         
 

@@ -34,11 +34,12 @@
             <% recordsArr.forEach(item => { %>
             <tr>
               <td rowspan="2"><%= item.id %></td>
-              <td rowspan="2"><%= item.status %></td>
+              <td rowspan="2"><%- item.status == 'PROVISIONAL' ? '仮予約' : item.status == 'CONFIRMED' ? '予約完了' : item.status == 'CANCELLED' ? '予約キャンセル' : item.status %>
+             </td>
               <% for(var i = 0; i < 1; i++){ %>
               <td><%= item.details[i].type %></td>
               <td><%= item.details[i].name %></td>
-              <td><%= item.details[i].status %></td>
+              <td><%- item.details[i].status == 'PROVISIONAL' ? '仮予約' : item.details[i].status == 'CONFIRMED' ? '予約完了' : item.details[i].status == 'CANCELLED' ? '予約キャンセル' : item.details[i].status == 'FAILED' ? '予約失敗' : item.details[i].status %></td>
 
               <% } %>
             </tr>
@@ -55,7 +56,7 @@
             <tr>
               <td><%= item.details[1].type %></td>
               <td><%= item.details[1].name %></td>
-              <td><%= item.details[1].status %></td>
+              <td><%- item.details[1].status == 'PROVISIONAL' ? '仮予約' : item.details[1].status == 'CONFIRMED' ? '予約完了' : item.details[1].status == 'CANCELLED' ? '予約キャンセル' : item.details[1].status == 'FAILED' ? '予約失敗' : item.details[1].status %></td>
             </tr>
             <% } %>
 
