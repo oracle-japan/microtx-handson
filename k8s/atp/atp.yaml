@@ -1,0 +1,51 @@
+apiVersion: oci.oracle.com/v1beta1
+kind: AutonomousDatabases
+metadata:
+  name: microtx-handson-db1
+  namespace: otmm
+spec:
+  compartmentId: <ご自身のコンパートメントOCID>
+  displayName: microtx-handson-db1
+  dbName: microtxhandson1
+  dbWorkload: OLTP
+  isDedicated: false
+  dbVersion: 19c
+  dataStorageSizeInTBs: 1
+  cpuCoreCount: 1
+  adminPassword:
+    secret:
+      secretName: admin-passwd
+  isAutoScalingEnabled: false
+  isFreeTier: true
+  licenseModel: LICENSE_INCLUDED
+  wallet:
+    walletName: okeatp1
+    walletPassword:
+      secret:
+        secretName: wallet-passwd
+---
+apiVersion: oci.oracle.com/v1beta1
+kind: AutonomousDatabases
+metadata:
+  name: microtx-handson-db2
+  namespace: otmm
+spec:
+  compartmentId: <ご自身のコンパートメントOCID>
+  displayName: microtx-handson-db2
+  dbName: microtxhandson2
+  dbWorkload: OLTP
+  isDedicated: false
+  dbVersion: 19c
+  dataStorageSizeInTBs: 1
+  cpuCoreCount: 1
+  adminPassword:
+    secret:
+      secretName: admin-passwd
+  isAutoScalingEnabled: false
+  isFreeTier: true
+  licenseModel: LICENSE_INCLUDED
+  wallet:
+    walletName: okeatp2
+    walletPassword:
+      secret:
+        secretName: wallet-passwd

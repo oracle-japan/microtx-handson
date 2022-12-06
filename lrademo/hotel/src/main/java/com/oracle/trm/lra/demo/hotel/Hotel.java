@@ -27,7 +27,7 @@ public class Hotel {
 
     private String name;
 
-    @Enumerated(EnumType.STRING)
+
     private BookingStatus status;
 
     private String type;
@@ -58,6 +58,7 @@ public class Hotel {
 
     @Basic(optional = false)
     @Column(name = "STATUS", nullable = false)
+    @Enumerated(EnumType.STRING)
     public BookingStatus getStatus() {
         return status;
     }
