@@ -2,7 +2,7 @@
 // このファイルは、JavaTM Architecture for XML Binding(JAXB) Reference Implementation、v2.3.0によって生成されました 
 // <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a>を参照してください 
 // ソース・スキーマの再コンパイル時にこのファイルの変更は失われます。 
-// 生成日: 2022.12.07 時間 02:10:44 PM JST 
+// 生成日: 2022.12.07 時間 02:36:05 PM JST 
 //
 
 
@@ -88,15 +88,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "persistenceUnit"
 })
 @XmlRootElement(name = "persistence")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
 public class Persistence {
 
     @XmlElement(name = "persistence-unit", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
     protected List<Persistence.PersistenceUnit> persistenceUnit;
     @XmlAttribute(name = "version", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
     protected String version;
 
     /**
@@ -121,7 +121,7 @@ public class Persistence {
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
     public List<Persistence.PersistenceUnit> getPersistenceUnit() {
         if (persistenceUnit == null) {
             persistenceUnit = new ArrayList<Persistence.PersistenceUnit>();
@@ -137,7 +137,7 @@ public class Persistence {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
     public String getVersion() {
         if (version == null) {
             return "2.2";
@@ -154,7 +154,7 @@ public class Persistence {
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
     public void setVersion(String value) {
         this.version = value;
     }
@@ -230,46 +230,46 @@ public class Persistence {
         "validationMode",
         "properties"
     })
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
     public static class PersistenceUnit {
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected String description;
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected String provider;
         @XmlElement(name = "jta-data-source")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected String jtaDataSource;
         @XmlElement(name = "non-jta-data-source")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected String nonJtaDataSource;
         @XmlElement(name = "mapping-file")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected List<String> mappingFile;
         @XmlElement(name = "jar-file")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected List<String> jarFile;
         @XmlElement(name = "class")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected List<String> clazz;
         @XmlElement(name = "exclude-unlisted-classes", defaultValue = "true")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected Boolean excludeUnlistedClasses;
         @XmlElement(name = "shared-cache-mode")
         @XmlSchemaType(name = "token")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected PersistenceUnitCachingType sharedCacheMode;
         @XmlElement(name = "validation-mode")
         @XmlSchemaType(name = "token")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected PersistenceUnitValidationModeType validationMode;
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected Persistence.PersistenceUnit.Properties properties;
         @XmlAttribute(name = "name", required = true)
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected String name;
         @XmlAttribute(name = "transaction-type")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         protected PersistenceUnitTransactionType transactionType;
 
         /**
@@ -280,7 +280,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public String getDescription() {
             return description;
         }
@@ -293,7 +293,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setDescription(String value) {
             this.description = value;
         }
@@ -306,7 +306,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public String getProvider() {
             return provider;
         }
@@ -319,7 +319,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setProvider(String value) {
             this.provider = value;
         }
@@ -332,7 +332,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public String getJtaDataSource() {
             return jtaDataSource;
         }
@@ -345,7 +345,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setJtaDataSource(String value) {
             this.jtaDataSource = value;
         }
@@ -358,7 +358,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public String getNonJtaDataSource() {
             return nonJtaDataSource;
         }
@@ -371,7 +371,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setNonJtaDataSource(String value) {
             this.nonJtaDataSource = value;
         }
@@ -398,7 +398,7 @@ public class Persistence {
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public List<String> getMappingFile() {
             if (mappingFile == null) {
                 mappingFile = new ArrayList<String>();
@@ -428,7 +428,7 @@ public class Persistence {
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public List<String> getJarFile() {
             if (jarFile == null) {
                 jarFile = new ArrayList<String>();
@@ -458,7 +458,7 @@ public class Persistence {
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public List<String> getClazz() {
             if (clazz == null) {
                 clazz = new ArrayList<String>();
@@ -474,7 +474,7 @@ public class Persistence {
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public Boolean isExcludeUnlistedClasses() {
             return excludeUnlistedClasses;
         }
@@ -487,7 +487,7 @@ public class Persistence {
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setExcludeUnlistedClasses(Boolean value) {
             this.excludeUnlistedClasses = value;
         }
@@ -500,7 +500,7 @@ public class Persistence {
          *     {@link PersistenceUnitCachingType }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public PersistenceUnitCachingType getSharedCacheMode() {
             return sharedCacheMode;
         }
@@ -513,7 +513,7 @@ public class Persistence {
          *     {@link PersistenceUnitCachingType }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setSharedCacheMode(PersistenceUnitCachingType value) {
             this.sharedCacheMode = value;
         }
@@ -526,7 +526,7 @@ public class Persistence {
          *     {@link PersistenceUnitValidationModeType }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public PersistenceUnitValidationModeType getValidationMode() {
             return validationMode;
         }
@@ -539,7 +539,7 @@ public class Persistence {
          *     {@link PersistenceUnitValidationModeType }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setValidationMode(PersistenceUnitValidationModeType value) {
             this.validationMode = value;
         }
@@ -552,7 +552,7 @@ public class Persistence {
          *     {@link Persistence.PersistenceUnit.Properties }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public Persistence.PersistenceUnit.Properties getProperties() {
             return properties;
         }
@@ -565,7 +565,7 @@ public class Persistence {
          *     {@link Persistence.PersistenceUnit.Properties }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setProperties(Persistence.PersistenceUnit.Properties value) {
             this.properties = value;
         }
@@ -578,7 +578,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public String getName() {
             return name;
         }
@@ -591,7 +591,7 @@ public class Persistence {
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setName(String value) {
             this.name = value;
         }
@@ -604,7 +604,7 @@ public class Persistence {
          *     {@link PersistenceUnitTransactionType }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public PersistenceUnitTransactionType getTransactionType() {
             return transactionType;
         }
@@ -617,7 +617,7 @@ public class Persistence {
          *     {@link PersistenceUnitTransactionType }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public void setTransactionType(PersistenceUnitTransactionType value) {
             this.transactionType = value;
         }
@@ -655,10 +655,10 @@ public class Persistence {
         @XmlType(name = "", propOrder = {
             "property"
         })
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
         public static class Properties {
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
             protected List<Persistence.PersistenceUnit.Properties.Property> property;
 
             /**
@@ -683,7 +683,7 @@ public class Persistence {
              * 
              * 
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
             public List<Persistence.PersistenceUnit.Properties.Property> getProperty() {
                 if (property == null) {
                     property = new ArrayList<Persistence.PersistenceUnit.Properties.Property>();
@@ -712,14 +712,14 @@ public class Persistence {
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
             public static class Property {
 
                 @XmlAttribute(name = "name", required = true)
-                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
                 protected String name;
                 @XmlAttribute(name = "value", required = true)
-                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
                 protected String value;
 
                 /**
@@ -730,7 +730,7 @@ public class Persistence {
                  *     {@link String }
                  *     
                  */
-                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
                 public String getName() {
                     return name;
                 }
@@ -743,7 +743,7 @@ public class Persistence {
                  *     {@link String }
                  *     
                  */
-                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
                 public void setName(String value) {
                     this.name = value;
                 }
@@ -756,7 +756,7 @@ public class Persistence {
                  *     {@link String }
                  *     
                  */
-                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
                 public String getValue() {
                     return value;
                 }
@@ -769,7 +769,7 @@ public class Persistence {
                  *     {@link String }
                  *     
                  */
-                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:10:44+09:00", comments = "JAXB RI v2.3.0")
+                @Generated(value = "com.sun.tools.xjc.Driver", date = "2022-12-07T02:36:05+09:00", comments = "JAXB RI v2.3.0")
                 public void setValue(String value) {
                     this.value = value;
                 }
