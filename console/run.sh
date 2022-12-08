@@ -3,10 +3,6 @@
 # there are other ways to do this but for now just do this:
 
 # export PORT=3001
-export IDCS_URL=https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
-export IDCS_CLIENT_ID=6a7840b6a440462d84407261783327b7
-export IDCS_CLIENT_SECRET=09c12f31-5e67-4230-8ee1-ba2314dcc8e1
-export TRIP_SERVICE_URL=http://168.138.54.15:8081/trip-service/api/trip
 
 # if you want to use the app to do self registration uncomment line
 # and include the ID of a self registration profile here:

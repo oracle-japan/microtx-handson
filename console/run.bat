@@ -1,10 +1,5 @@
 @ECHO OFF
 
-SET IDCS_URL=https://idcs-f0017ddeef0241cfbd70e057c032ff44.identity.oraclecloud.com
-SET IDCS_CLIENT_ID=6a7840b6a440462d84407261783327b7
-SET IDCS_CLIENT_SECRET=09c12f31-5e67-4230-8ee1-ba2314dcc8e1
-set TRIP_SERVICE_URL=http://168.138.54.15:8081/trip-service/api/trip
-
 REM if you want to use the app to do self registration uncomment line
 REM and include the ID of a self registration profile here:
 REM SET IDCS_SELFREGPROFILES=1234567890abcd1234567890abcdef12
