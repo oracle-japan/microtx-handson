@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: hotel
-          image: nrt.ocir.io/orasejapan/tmm-handson-console
+          image: nrt.ocir.io/orasejapan/tmm-handson-hotel
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082
