@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: hotel
-          image: icn.ocir.io/orasejapan/hotel
+          image: nrt.ocir.io/orasejapan/tmm-handson-console
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082
@@ -134,7 +134,7 @@ spec:
     spec:
       containers:
         - name: flight
-          image: icn.ocir.io/orasejapan/flight
+          image: nrt.ocir.io/orasejapan/tmm-handson-flight
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8083
@@ -221,7 +221,7 @@ spec:
     spec:
       containers:
         - name: trip-manager
-          image: icn.ocir.io/orasejapan/trip-manager
+          image: nrt.ocir.io/orasejapan/tmm-handson-trip-manager
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
@@ -295,7 +295,7 @@ spec:
     spec:
       containers:
         - name: console
-          image: icn.ocir.io/orasejapan/console
+          image: nrt.ocir.io/orasejapan/tmm-handson-console
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8084
