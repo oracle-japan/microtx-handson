@@ -25,26 +25,26 @@ read CLUSTER_PREFIX
 
 cd hotel
 docker image build -t=hotel .
-docker image tag hotel $CLUSTER_PREFIX/hotel
-docker image push $CLUSTER_PREFIX/hotel
+docker image tag hotel $CLUSTER_PREFIX/tmm-handson-hotel
+docker image push $CLUSTER_PREFIX/tmm-handson-hotel
 cd ../
 
 # Build flight service
 cd flight
 docker image build -t=flight .
-docker image tag flight $CLUSTER_PREFIX/flight
-docker image push $CLUSTER_PREFIX/flight
+docker image tag flight $CLUSTER_PREFIX/tmm-handson-flight
+docker image push $CLUSTER_PREFIX/tmm-handson-flight
 cd ../
 
 # Build trip manager service
 cd trip-manager
 docker image build -t=trip-manager .
-docker image tag trip-manager $CLUSTER_PREFIX/trip-manager
-docker image push $CLUSTER_PREFIX/trip-manager
+docker image tag trip-manager $CLUSTER_PREFIX/tmm-handson-trip-manager
+docker image push $CLUSTER_PREFIX/tmm-handson-trip-manager
 cd ../
 
 cd console
 docker image build -t=console .
-docker image tag console $CLUSTER_PREFIX/console
-docker image push $CLUSTER_PREFIX/console
+docker image tag console $CLUSTER_PREFIX/tmm-handson-console
+docker image push $CLUSTER_PREFIX/tmm-handson-console
 
