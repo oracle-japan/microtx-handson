@@ -20,7 +20,7 @@ server:
   host: 0.0.0.0
 
 mp.lra:
-　coordinator.url: http://localhost:9000/api/v1/lra-coordinator
+  coordinator.url: http://localhost:9000/api/v1/lra-coordinator
   propagation.active: true
   participant.url: http://localhost:8081
   coordinator.headers-propagation.prefix: ["x-b3-", "oracle-tmm-", "authorization", "refresh-"]
