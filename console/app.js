@@ -39,11 +39,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set('trust proxy', 1);
 
 app.use(session({
-    name: 'otmm-console',
+    name: 'tmm-console',
     secret: "secretkeyffdd",
     saveUninitialized:true,
-    cookie: { maxAge: 3600000 },
-    store:new FileStore(),
+    cookie: { maxAge: 3600000 ,path: '/demo-console'},
+    store:new FileStore({logFn: function(){}}),
     resave: false
 }));
 app.use(cookieParser("secretkeyffdd"));

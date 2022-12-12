@@ -50,7 +50,7 @@ router.get('/signout', (req, res) => {
           return;
         }
          
-        res.clearCookie("otmm-console");
+        res.clearCookie("tmm-console");
         res.redirect('/demo-console');
     });
 });
