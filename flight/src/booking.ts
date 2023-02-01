@@ -85,7 +85,10 @@ export async function initdb() {
         console.log(dbConfiged);
         // console.log(oracledb);
 
-        connection = await oracledb.getConnection(dbConfiged);
+        // create default connection pool
+        await oracledb.createPool(dbConfiged);
+
+        connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
         // console.log(connection);
         
         await connection.execute(`begin
@@ -122,7 +125,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
                 let result = await connection.execute<Booking>(`SELECT id as "id", encodedid as "encodedId" ,name as "name",status as "status",type as "type" FROM flight where id = '${bookingId}'`,{},{outFormat: oracledb.OUT_FORMAT_OBJECT});
                 console.log("Result is:", result);
                 return result.rows && Array.isArray(result.rows) ? result.rows[0] as Booking : null;
@@ -145,7 +148,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
                 let result = await connection.execute<Booking>(`DELETE FROM flight where id = '${bookingId}'`);
                 await connection.commit();
                 console.log("deleteById Result is:", result);
@@ -168,7 +171,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
                 let result = await connection.execute(`SELECT count(*) FROM flight where status = '`  + BookingStatus.CONFIRMED + `'` );
                 console.log("Result is:", result);
                 return result.rows && result.rows[0] && Array.isArray(result.rows[0]) ? result.rows[0][0] : 0;
@@ -190,7 +193,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
                 let result = await connection.execute<Booking>(`SELECT id as "id", encodedid as "encodedId" ,name as "name",status as "status",type as "type" FROM flight`,[],{outFormat: oracledb.OUT_FORMAT_OBJECT});
                 console.log("Result is:", result);
                 return result.rows! as Booking[];
@@ -216,7 +219,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
                 const sql =
                 'INSERT INTO flight (id, encodedid,name,status,type) VALUES (:id, :encodedid,:name,:status,:type )';
                 const binds = [booking.id, booking.encodedId,booking.name,booking.status,booking.type];
@@ -243,7 +246,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection(/*use connection pool*//*dbConfiged*/);
                 const sql =
                 'UPDATE flight set status = :status where id = :id';
                 const binds = [booking.status, booking.id];
