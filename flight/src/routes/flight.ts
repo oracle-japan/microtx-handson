@@ -143,6 +143,12 @@ flightSvcRouter.delete('/flight/:bookingId', async (req, resp) => {
     }
 });
 
+flightSvcRouter.delete('/flight', async (req, resp) => {
+    console.log(`Delete All flight Bookings called`);
+    await BookingService.deleteAll();
+    resp.status(200).send();
+});
+
 flightSvcRouter.get('/flight', async (req, resp) => {
     console.log("Get All Flight bookings called");
     resp.type('application/json').send(JSON.stringify(await BookingService.selectAllAsObject()));

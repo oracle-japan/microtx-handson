@@ -216,3 +216,30 @@ function getAllTrip(accessToken) {
   exports.getAllTrip = getAllTrip;
 
 
+  function deleteAllTrip(accessToken) {
+    return new Promise(function(resolve, reject) {
+        
+        request({
+                method: 'DELETE',
+                uri: process.env.TRIP_SERVICE_URL,
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': 'Bearer ' + accessToken,
+                    'Accept': 'application/json'
+                }
+            },
+            function(error, response, body) {
+                if (error) {
+                    return reject(error);
+                } else if (response && response.statusCode == 200) {
+                    logger.log("deleteAllTrip: \n" + body);
+                    return resolve(body);
+                } else {
+                    return reject("Unable to delete trips.");
+                }
+            });
+    });
+  };
+
+
+  exports.deleteAllTrip = deleteAllTrip;

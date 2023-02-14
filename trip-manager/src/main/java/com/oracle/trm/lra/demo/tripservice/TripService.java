@@ -119,4 +119,11 @@ public class TripService {
         booking.merge(response.readEntity(Booking.class));
     }
 
+    /**
+     * clean all trip bookings
+     */
+    public void resetTripBookings(){
+        bookings.clear();
+    }
+
 }

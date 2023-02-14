@@ -19,7 +19,9 @@ import javax.persistence.*;
         @NamedQuery(name = "getHotels",
                 query = "SELECT p FROM Hotel p"),
         @NamedQuery(name = "getHotelBookingCount",
-                query = "SELECT count(p) FROM Hotel p")
+                query = "SELECT count(p) FROM Hotel p"),
+        @NamedQuery(name = "deleteHotels",
+                query = "DELETE FROM Hotel")
 })
 public class Hotel {
 

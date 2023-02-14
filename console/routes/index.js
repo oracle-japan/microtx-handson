@@ -69,7 +69,7 @@ router.post('/posttrip', (req, res) => {
                 req.session.oracleTmmTxToken = bookingData.oracleTmmTxToken;
             }
             let resData = JSON.parse(bookingData.body);
-            res.render("detail", { status: resData.status,  detailsInfo:  resData.details, bookingId : resData.id});
+            res.render("detailp", { status: resData.status,  detailsInfo:  resData.details, bookingId : resData.id});
 
         }).catch(function(error) {
             logger.log("--- error : " + error);
@@ -90,17 +90,24 @@ router.post('/confirmtrip', (req, res) => {
     console.log(bookingId);
 
     oauth.confirmTrip(accessToken,bookingId,oracleTmmTxToken).then(function(tempRes) {
-        oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
-            let resData = JSON.parse(bookingData);
-            res.render("detail", { status: resData.status, detailsInfo:  resData.details,bookingId : resData.id});
-        });  
+        res.render("load",{bookingStatus:'予約確定中',bookingId:bookingId});
     }).catch(function(error) {
         logger.log("--- error : " + error);
         res.status(500).send(error);
     });
 });
 
-
+router.post('/viewtrip', (req, res) => {
+    let bookingId = req.body.bookingId;
+    let accessToken = req.session.accessToken;
+    oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
+        let resData = JSON.parse(bookingData);
+        res.render("detail", { status: resData.status, detailsInfo:  resData.details,bookingId : resData.id});
+    }).catch(function(error) {
+        logger.log("--- error : " + error);
+        res.status(500).send(error);
+    });
+});
 
 router.post('/canceltrip', (req, res) => {
 
@@ -108,10 +115,7 @@ router.post('/canceltrip', (req, res) => {
     let accessToken = req.session.accessToken;
     let oracleTmmTxToken = req.session.oracleTmmTxToken;
     oauth.cancelTrip(accessToken,bookingId,oracleTmmTxToken).then(function(tempRes) {
-        oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
-            let resData = JSON.parse(bookingData);
-            res.render("detail", { status: resData.status, detailsInfo:  resData.details,bookingId : resData.id});
-        });  
+        res.render("load",{bookingStatus:'予約キャンセル中',bookingId:bookingId});
     }).catch(function(error) {
         logger.log("--- error : " + error);
         res.status(500).send(error);
@@ -128,6 +132,25 @@ router.get('/gettrips', (req, res) => {
             let resData = JSON.parse(bookingData);
             res.render("list", { recordsArr:  resData});
           
+        }).catch(function(error) {
+            logger.log("--- error : " + error);
+            res.status(500).send(error);
+        });
+	} else {
+		// Not logged in
+		res.render("signin");
+	}
+   
+
+});
+
+
+router.get('/deletetrips', (req, res) => {
+
+    let accessToken = req.session.accessToken;
+    if (accessToken) {
+        oauth.deleteAllTrip(accessToken).then(function(bookingData) {
+            res.redirect("/demo-console/gettrips");
         }).catch(function(error) {
             logger.log("--- error : " + error);
             res.status(500).send(error);

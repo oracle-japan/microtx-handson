@@ -21,7 +21,7 @@
 */
 import express from 'express';
 import flightSvcRouter from './src/routes/flight';
-
+import { closePool } from './src/booking';
 
 // Init express
 // Create a new express application instance
@@ -45,6 +45,11 @@ const server = app.listen(port, '0.0.0.0', () => {
     //logger.info('Express server started on port: ' + port);
     console.log('Flight service running at http://%s:%s', server.address(), port);
 });
+
+process
+  .once('SIGTERM', closePool)
+  .once('SIGINT',  closePool);
+
 
 // Export express instance
 export default app;

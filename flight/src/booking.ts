@@ -76,6 +76,23 @@ export function setMaxConfirmedBooking(num: number){
 }
 
 
+export function closePool(){
+    console.log("\nTerminating");
+    try {
+      // Get the pool from the pool cache and close it when no
+      // connections are in use, or force it closed after 10 seconds
+        oracledb.getPool().close(10, function(err) {
+            if (err)
+            console.error(err.message);
+            else
+            console.log("Pool closed");
+        });
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+
 export async function initdb() {
 
     let connection;
@@ -85,7 +102,10 @@ export async function initdb() {
         console.log(dbConfiged);
         // console.log(oracledb);
 
-        connection = await oracledb.getConnection(dbConfiged);
+        // create default connection pool
+        await oracledb.createPool(dbConfiged);
+
+        connection = await oracledb.getConnection();
         // console.log(connection);
         
         await connection.execute(`begin
@@ -122,7 +142,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection();
                 let result = await connection.execute<Booking>(`SELECT id as "id", encodedid as "encodedId" ,name as "name",status as "status",type as "type" FROM flight where id = '${bookingId}'`,{},{outFormat: oracledb.OUT_FORMAT_OBJECT});
                 console.log("Result is:", result);
                 return result.rows && Array.isArray(result.rows) ? result.rows[0] as Booking : null;
@@ -145,10 +165,32 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection();
                 let result = await connection.execute<Booking>(`DELETE FROM flight where id = '${bookingId}'`);
                 await connection.commit();
                 console.log("deleteById Result is:", result);
+            } catch (err) {
+                console.error (err);
+            } finally {
+                if (connection) {
+                    try {
+                        await connection.close(); // Put the connection back in the pool
+                    } catch (err) {
+                        console.error (err);
+                    }
+                }
+            }
+            
+        }
+
+
+        static async  deleteAll() : Promise<void> {
+
+            let connection;
+            try {
+                connection = await oracledb.getConnection();
+                await connection.execute<Booking>(`DELETE FROM flight`);
+                await connection.commit();
             } catch (err) {
                 console.error (err);
             } finally {
@@ -168,7 +210,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection();
                 let result = await connection.execute(`SELECT count(*) FROM flight where status = '`  + BookingStatus.CONFIRMED + `'` );
                 console.log("Result is:", result);
                 return result.rows && result.rows[0] && Array.isArray(result.rows[0]) ? result.rows[0][0] : 0;
@@ -190,7 +232,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection();
                 let result = await connection.execute<Booking>(`SELECT id as "id", encodedid as "encodedId" ,name as "name",status as "status",type as "type" FROM flight`,[],{outFormat: oracledb.OUT_FORMAT_OBJECT});
                 console.log("Result is:", result);
                 return result.rows! as Booking[];
@@ -216,7 +258,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection();
                 const sql =
                 'INSERT INTO flight (id, encodedid,name,status,type) VALUES (:id, :encodedid,:name,:status,:type )';
                 const binds = [booking.id, booking.encodedId,booking.name,booking.status,booking.type];
@@ -243,7 +285,7 @@ export class BookingService {
 
             let connection;
             try {
-                connection = await oracledb.getConnection(dbConfiged);
+                connection = await oracledb.getConnection();
                 const sql =
                 'UPDATE flight set status = :status where id = :id';
                 const binds = [booking.status, booking.id];

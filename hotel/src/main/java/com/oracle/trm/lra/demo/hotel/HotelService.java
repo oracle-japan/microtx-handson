@@ -138,4 +138,12 @@ public class HotelService {
     public List<Hotel> getAll() {
         return entityManager.createNamedQuery("getHotels", Hotel.class).getResultList();
     }
+
+    /**
+     * delete all hotel bookings
+     */
+    @Transactional(Transactional.TxType.REQUIRED)
+    public void deleteAll() {
+         entityManager.createNamedQuery("deleteHotels").executeUpdate();
+    }
 }

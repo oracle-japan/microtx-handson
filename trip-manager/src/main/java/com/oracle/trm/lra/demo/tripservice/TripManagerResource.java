@@ -158,6 +158,20 @@ public class TripManagerResource {
         return Response.ok("Cancel booking requested").build();
     }
 
+    @DELETE
+    @Path("/trip")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteAllTrip() {
+        log.info("Deleting All trip bookings...");
+        Response hotelRes = getHotelTarget().request().delete();
+        Response flightRes = getFlightTarget().request().delete();
+        if(hotelRes.getStatus() == Response.Status.OK.getStatusCode() && Response.Status.OK.getStatusCode() == flightRes.getStatus()){
+            service.resetTripBookings();
+            return Response.ok("Deleted All trip bookings").build();
+        }
+        return Response.status(INTERNAL_SERVER_ERROR).build();
+    }
+
     @GET
     @Path("/trip")
     @Produces(MediaType.APPLICATION_JSON)

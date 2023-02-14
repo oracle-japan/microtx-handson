@@ -130,6 +130,17 @@ public class HotelResource {
         return Response.ok().build();
     }
 
+
+    @DELETE
+    @Path("/hotel")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response deleteAll() {
+        log.info("Delete All Hotel bookings");
+        hotelService.deleteAll();
+        return Response.ok().build();
+    }
+
+
     @GET
     @Path("/hotel/{bookingId}")
     @Produces(MediaType.APPLICATION_JSON)
