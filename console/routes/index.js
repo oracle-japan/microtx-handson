@@ -90,24 +90,25 @@ router.post('/confirmtrip', (req, res) => {
     console.log(bookingId);
 
     oauth.confirmTrip(accessToken,bookingId,oracleTmmTxToken).then(function(tempRes) {
-        res.render("load",{bookingStatus:'予約確定中',bookingId:bookingId});
-    }).catch(function(error) {
-        logger.log("--- error : " + error);
-        res.status(500).send(error);
-    });
+            var timer = setInterval(function(){
+                oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
+                    let resData = JSON.parse(bookingData);
+                    if(resData.status != "PROVISIONAL"){
+                        res.render("detail", { status: resData.status, detailsInfo:  resData.details,bookingId : resData.id});
+                        clearInterval(timer);
+                    }
+                }).catch(function(error) {
+                    logger.log("--- error : " + error);
+                    res.status(500).send(error);
+                });
+            },1000);
+        }).catch(function(error) {
+            logger.log("--- error : " + error);
+            res.status(500).send(error);
+        });
+
 });
 
-router.post('/viewtrip', (req, res) => {
-    let bookingId = req.body.bookingId;
-    let accessToken = req.session.accessToken;
-    oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
-        let resData = JSON.parse(bookingData);
-        res.render("detail", { status: resData.status, detailsInfo:  resData.details,bookingId : resData.id});
-    }).catch(function(error) {
-        logger.log("--- error : " + error);
-        res.status(500).send(error);
-    });
-});
 
 router.post('/canceltrip', (req, res) => {
 
@@ -115,7 +116,18 @@ router.post('/canceltrip', (req, res) => {
     let accessToken = req.session.accessToken;
     let oracleTmmTxToken = req.session.oracleTmmTxToken;
     oauth.cancelTrip(accessToken,bookingId,oracleTmmTxToken).then(function(tempRes) {
-        res.render("load",{bookingStatus:'予約キャンセル中',bookingId:bookingId});
+        var timer2 = setInterval(function(){
+            oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
+                let resData = JSON.parse(bookingData);
+                if(resData.status != "PROVISIONAL"){
+                    res.render("detail", { status: resData.status, detailsInfo:  resData.details,bookingId : resData.id});
+                    clearInterval(timer2);
+                }
+            }).catch(function(error) {
+                logger.log("--- error : " + error);
+                res.status(500).send(error);
+            });
+        },1000);
     }).catch(function(error) {
         logger.log("--- error : " + error);
         res.status(500).send(error);
