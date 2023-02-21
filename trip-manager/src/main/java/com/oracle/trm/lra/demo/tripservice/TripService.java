@@ -27,10 +27,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
@@ -102,7 +99,7 @@ public class TripService {
         // If any associate booking fails, the entire trip fails
         boolean anyAssociatedBookingFailed = Arrays.stream(tripBooking.getDetails()).anyMatch(booking -> booking.getStatus().equals(Booking.BookingStatus.FAILED) || booking.getStatus().equals(Booking.BookingStatus.CANCELLED));
         if (anyAssociatedBookingFailed) {
-            tripBooking.setStatus(Booking.BookingStatus.CANCELLED);
+            tripBooking.setStatus(Booking.BookingStatus.FAILED);
         } else {
             tripBooking.setStatus(Booking.BookingStatus.CONFIRMED);
         }
@@ -125,5 +122,58 @@ public class TripService {
     public void resetTripBookings(){
         bookings.clear();
     }
+
+
+    /**
+     * Update the associate booking details in trip booking details
+     *
+     * @param bookList  service response hotel/flight book list
+     * @param curItem trip book item
+     */
+    public void mergeBookings(List<Booking> bookList,Booking curItem){
+        String curBookId = curItem.getId();
+        Booking[] detailsBooking = curItem.getDetails();
+        Booking booking = bookList.stream().filter(a -> a.getId().equals(curBookId)).findFirst().orElse(null);
+        if (booking != null){
+            for (Booking detailItem : detailsBooking){
+                if(detailItem.getType().equals(booking.getType())){
+                    detailItem.setStatus(booking.getStatus());
+                    detailItem.setName(booking.getName());
+                }
+            }
+        }
+    }
+
+    /**
+     * Update the associate booking details in trip booking details
+     *
+     * @param hotelBookList  service response hotel book list
+     * @param flightBookList service response flight book list
+     */
+    public void mergeBookingsWithHotelAndFlightList(List<Booking> hotelBookList,List<Booking> flightBookList){
+        for(Map.Entry<String, Booking> m:bookings.entrySet()) {
+            mergeBookings(hotelBookList,m.getValue());
+            mergeBookings(flightBookList,m.getValue());
+        }
+    }
+
+    /**
+     * Update the associate booking details in trip booking details
+     *
+     * @param curItem trip book item
+     * @param hotelTarget  Hotel service web target
+     * @param flightTarget Flight Service web target
+     *
+     */
+    public void mergeSingleBookingWithHotelAndFlightList(Booking curItem,WebTarget hotelTarget, WebTarget flightTarget){
+        for (Booking associatedBooking : curItem.getDetails()) {
+            if ("Hotel".equals(associatedBooking.getType())) {
+                mergeAssociateBookingDetails(hotelTarget, associatedBooking);
+            } else if ("Flight".equals(associatedBooking.getType())) {
+                mergeAssociateBookingDetails(flightTarget, associatedBooking);
+            }
+        }
+    }
+
 
 }

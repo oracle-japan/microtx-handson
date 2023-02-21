@@ -49,10 +49,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -134,6 +131,8 @@ public class TripManagerResource {
     @Path("/trip/{bookingId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBooking(@PathParam("bookingId") String bookingId) {
+        Booking curItem = service.get(bookingId);
+        service.mergeSingleBookingWithHotelAndFlightList(curItem, getHotelTarget(), getFlightTarget());
         return Response.ok(service.get(bookingId)).build();
     }
 
@@ -146,6 +145,7 @@ public class TripManagerResource {
         Booking tripBooking = service.get(bookingId);
         if (tripBooking.getStatus() == Booking.BookingStatus.CANCEL_REQUESTED)
             throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST).entity("Cannot confirm a trip booking that needs to be cancelled").build());
+        tripBooking.setStatus(Booking.BookingStatus.CONFIRMED);
         return Response.ok().build();
     }
 
@@ -176,6 +176,15 @@ public class TripManagerResource {
     @Path("/trip")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
+        if(!service.getAll().isEmpty()){
+            Response hotelRes = getHotelTarget().request().get();
+            List<Booking> hotelBookList = hotelRes.readEntity(new GenericType<List<Booking>>(){});
+
+            Response flightRes = getFlightTarget().request().get();
+            List<Booking> flightBookList = flightRes.readEntity(new GenericType<List<Booking>>(){});
+
+            service.mergeBookingsWithHotelAndFlightList(hotelBookList,flightBookList);
+        }
         return Response.ok(service.getAll()).build();
     }
 
