@@ -90,7 +90,7 @@ router.post('/confirmtrip', (req, res) => {
     console.log(bookingId);
 
     oauth.confirmTrip(accessToken,bookingId,oracleTmmTxToken).then(function(tempRes) {
-            var timer = setInterval(function(){
+            var timer = setInterval(function getTrip(){
                 oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
                     let resData = JSON.parse(bookingData);
                     if(resData.status != "PROVISIONAL"){
@@ -101,7 +101,8 @@ router.post('/confirmtrip', (req, res) => {
                     logger.log("--- error : " + error);
                     res.status(500).send(error);
                 });
-            },1000);
+                return getTrip;
+            }(),1000);
         }).catch(function(error) {
             logger.log("--- error : " + error);
             res.status(500).send(error);
@@ -116,7 +117,7 @@ router.post('/canceltrip', (req, res) => {
     let accessToken = req.session.accessToken;
     let oracleTmmTxToken = req.session.oracleTmmTxToken;
     oauth.cancelTrip(accessToken,bookingId,oracleTmmTxToken).then(function(tempRes) {
-        var timer2 = setInterval(function(){
+        var timer2 = setInterval(function getTrip(){
             oauth.getTrip(accessToken,bookingId).then(function(bookingData) {
                 let resData = JSON.parse(bookingData);
                 if(resData.status != "PROVISIONAL"){
@@ -127,7 +128,8 @@ router.post('/canceltrip', (req, res) => {
                 logger.log("--- error : " + error);
                 res.status(500).send(error);
             });
-        },1000);
+            return getTrip;
+        }(),1000);
     }).catch(function(error) {
         logger.log("--- error : " + error);
         res.status(500).send(error);

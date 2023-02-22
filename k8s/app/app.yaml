@@ -163,7 +163,7 @@ spec:
               value: microtxhandson2_high
           volumeMounts:
           - name: handson
-            mountPath: /usr/src/app/instantclient_21_8/network/admin
+            mountPath: /usr/src/app/instantclient_21_9/network/admin
       volumes:
       - name: handson
         secret:

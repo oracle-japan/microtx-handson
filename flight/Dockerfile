@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y libaio1
 COPY instantclient-basic-linuxx64.zip ./
 RUN unzip instantclient-basic-linuxx64.zip
-RUN echo /usr/src/app/instantclient_21_8 > /etc/ld.so.conf.d/oracle-instantclient.conf
+RUN echo /usr/src/app/instantclient_21_9 > /etc/ld.so.conf.d/oracle-instantclient.conf
 
 RUN ldconfig
 
