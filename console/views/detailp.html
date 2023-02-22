@@ -26,6 +26,9 @@
           <% if (status == "CANCELLED") {%>
             <span>予約キャンセル</span>
           <% } %>
+          <% if (status == "FAILED") {%>
+            <span>予約失敗</span>
+          <% } %>
           </p>
           <p class="title">予約ID： <%= bookingId %></p>
           <p class="title">予約詳細情報</p>

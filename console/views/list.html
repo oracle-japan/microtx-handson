@@ -34,7 +34,7 @@
             <% recordsArr.forEach(item => { %>
             <tr>
               <td rowspan="2"><%= item.id %></td>
-              <td rowspan="2"><%- item.status == 'PROVISIONAL' ? '仮予約' : item.status == 'CONFIRMED' ? '予約完了' : item.status == 'CANCELLED' ? '予約キャンセル' : item.status %>
+              <td rowspan="2"><%- item.status == 'PROVISIONAL' ? '仮予約' : item.status == 'CONFIRMED' ? '予約完了' : item.status == 'CANCELLED' ? '予約キャンセル' : item.status == 'FAILED' ? '予約失敗': item.status %>
              </td>
               <% for(var i = 0; i < 1; i++){ %>
               <td><%= item.details[i].type %></td>
