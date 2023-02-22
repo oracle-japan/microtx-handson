@@ -26,6 +26,9 @@
           <% if (status == "CANCELLED") {%>
             <span>予約キャンセル</span>
           <% } %>
+          <% if (status == "FAILED") {%>
+            <span>予約失敗</span>
+          <% } %>
           </p>
           <p class="title">予約ID： <%= bookingId %></p>
           <p class="title">予約詳細情報</p>
@@ -45,7 +48,7 @@
         <% } %>
         <br>
         
-        <% if (status == "CONFIRMED" || status == "CANCELLED") {%>
+        <% if (status == "CONFIRMED" || status == "CANCELLED" || status == "FAILED") {%>
         <div class="menu"><span><a href="/demo-console">新たに予約</a></span><span><a href="/demo-console/gettrips">予約一覧</a></span><span><a href="/demo-console/signout">ログアウト</a></span></div>
         <% } %>
       </div>
