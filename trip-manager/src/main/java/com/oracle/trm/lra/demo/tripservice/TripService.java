@@ -98,7 +98,11 @@ public class TripService {
         }
         // If any associate booking fails, the entire trip fails
         boolean anyAssociatedBookingFailed = Arrays.stream(tripBooking.getDetails()).anyMatch(booking -> booking.getStatus().equals(Booking.BookingStatus.FAILED) || booking.getStatus().equals(Booking.BookingStatus.CANCELLED));
-        if (anyAssociatedBookingFailed) {
+        boolean allAssociatedBookingCancelled = Arrays.stream(tripBooking.getDetails()).allMatch( booking -> booking.getStatus().equals(Booking.BookingStatus.CANCELLED));
+
+        if (allAssociatedBookingCancelled) {
+            tripBooking.setStatus(Booking.BookingStatus.CANCELLED);
+        } else if (anyAssociatedBookingFailed) {
             tripBooking.setStatus(Booking.BookingStatus.FAILED);
         } else {
             tripBooking.setStatus(Booking.BookingStatus.CONFIRMED);
