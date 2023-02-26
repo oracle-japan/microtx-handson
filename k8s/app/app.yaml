@@ -46,7 +46,7 @@ spec:
       containers:
         - name: hotel
           image: nrt.ocir.io/orasejapan/tmm-handson-hotel
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8082
           resources:
@@ -135,7 +135,7 @@ spec:
       containers:
         - name: flight
           image: nrt.ocir.io/orasejapan/tmm-handson-flight
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8083
           resources:
@@ -163,7 +163,7 @@ spec:
               value: microtxhandson2_high
           volumeMounts:
           - name: handson
-            mountPath: /usr/src/app/instantclient_21_9/network/admin
+            mountPath: /usr/src/app/instantclient/network/admin
       volumes:
       - name: handson
         secret:
@@ -222,7 +222,7 @@ spec:
       containers:
         - name: trip-manager
           image: nrt.ocir.io/orasejapan/tmm-handson-trip-manager
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8081
           resources:
@@ -296,7 +296,7 @@ spec:
       containers:
         - name: console
           image: nrt.ocir.io/orasejapan/tmm-handson-console
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8084
           resources:

@@ -20,9 +20,11 @@ FROM node:16
 # Create app directory
 WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y libaio1
-COPY instantclient-basic-linuxx64.zip ./
+RUN wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basic-linuxx64.zip
 RUN unzip instantclient-basic-linuxx64.zip
-RUN echo /usr/src/app/instantclient_21_9 > /etc/ld.so.conf.d/oracle-instantclient.conf
+RUN mkdir instantclient
+RUN cp -R instantclient_*/*  instantclient
+RUN echo /usr/src/app/instantclient > /etc/ld.so.conf.d/oracle-instantclient.conf
 
 RUN ldconfig
 
@@ -30,7 +32,7 @@ RUN ldconfig
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
-COPY tmmlib-node-22.3.tgz ./
+COPY tmmlib-node*.tgz ./
 RUN npm install
 RUN npm install -g npm@8.1.2
 # If you are building your code for production
