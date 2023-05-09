@@ -4,17 +4,8 @@ var logger = require('../helpers/logging');
 var oauth = require('../helpers/oauth.js');
 
 
-/* GET home page. */
 
-// router.get('/', function (req, res, next) {
 
-//     res.setHeader('Content-Type', 'text/html');
-//     res.write('<script language="JavaScript">\n');
-//     res.write('window.location = "signin.html";\n');
-//     res.write('</script>\n\n');
-//     res.end();
-
-// });
 
 router.get('/', function(req, res,next) {
 	// If the user is loggedin
@@ -38,7 +29,8 @@ router.post('/login', (req, res) => {
         res.render("trip");
     }).catch(function(error) {
         logger.log("--- error : " + error);
-        res.status(500).send(error);
+        console.log(error);
+        res.status(500).send(error.message);
     });
 });
 
@@ -73,7 +65,7 @@ router.post('/posttrip', (req, res) => {
 
         }).catch(function(error) {
             logger.log("--- error : " + error);
-            res.status(500).send(error);
+            res.status(500).send(error.message);
         });
 	} else {
 		// Not logged in
@@ -99,13 +91,13 @@ router.post('/confirmtrip', (req, res) => {
                     }
                 }).catch(function(error) {
                     logger.log("--- error : " + error);
-                    res.status(500).send(error);
+                    res.status(500).send(error.message);
                 });
                 return getTrip;
             }(),1000);
         }).catch(function(error) {
             logger.log("--- error : " + error);
-            res.status(500).send(error);
+            res.status(500).send(error.message);
         });
 
 });
@@ -126,13 +118,13 @@ router.post('/canceltrip', (req, res) => {
                 }
             }).catch(function(error) {
                 logger.log("--- error : " + error);
-                res.status(500).send(error);
+                res.status(500).send(error.message);
             });
             return getTrip;
         }(),1000);
     }).catch(function(error) {
         logger.log("--- error : " + error);
-        res.status(500).send(error);
+        res.status(500).send(error.message);
     });
 
 });
@@ -148,7 +140,7 @@ router.get('/gettrips', (req, res) => {
           
         }).catch(function(error) {
             logger.log("--- error : " + error);
-            res.status(500).send(error);
+            res.status(500).send(error.message);
         });
 	} else {
 		// Not logged in
@@ -167,7 +159,7 @@ router.get('/deletetrips', (req, res) => {
             res.redirect("/demo-console/gettrips");
         }).catch(function(error) {
             logger.log("--- error : " + error);
-            res.status(500).send(error);
+            res.status(500).send(error.message);
         });
 	} else {
 		// Not logged in
