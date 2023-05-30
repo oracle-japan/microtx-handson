@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "oracledb": "^5.5.0",
-    "tmmlib-node": "file:tmmlib-node-22.3.1.tgz",
+    "tmmlib-node": "file:tmmlib-node-22.3.2.tgz",
     "ts-loader": "^9.4.1",
     "typescript": "^4.3.5"
   },
